@@ -8,11 +8,18 @@ Comprehension du fichier:
     -a), b)...:fichier
     -a-1), a-2)...:explication
 
+<<<<<<< HEAD
 # # sprint 5  <!-- But: Redirection d'une servlet vers une page(setdispatcher) -->
     1)Framework\src\java:
         a)FrontServlet.java:
             a-1) processRequest:_Quelques fonctions(prend les derniers urls)
                                 _qui prend les classes et la redirige dans d'une vue(requestDispatcher)
+=======
+# # sprint 4 <!-- But: Deploiement et test du projet -->
+    1)Framework\src\java:
+        a)FrontServlet.java:
+            a-1) processRequest+Quelques fonctions(prend les derniers urls)
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
             a-2) doPost, doGet : appelle la fonction processRequest
             a-3) HashMap de <String, Mapping> (pour remplir les classes)
             a-4) Init: definit le chemin de chaque package et la montre
@@ -26,17 +33,25 @@ Comprehension du fichier:
             a-1) getMethodsControllerURL: prend les classes passées venant du servlet et la et dans une
                 HashMap
         e) exe.bat:
+<<<<<<< HEAD
             a-1) commande pour compiler les classes et redirection dans le sprint6
         f) framework.jar: fichier jar(contenant les classes dans  le dossier etu1970)
         g) ModelView.java:classe avec comme attribut: view
 
+=======
+            a-1) commande pour compiler les classes et redirection dans le sprint5
+        f) framework.jar: fichier jar(contenant les classes dans  le dossier etu1970)
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
     2)Framework\src\java\classeAnnoted:
         a)AppRoute:
             a-1) simple classe annoté(qui a comme attribut: l'url)
     4)TestFramework\src\model\emp:
         a)Emp.java:
             a-1) Classe pour essayer si l'annotation marche
+<<<<<<< HEAD
             a-2) redirect: pour tester s'il va vraiment dans ./pages/welcome.jsp (+url: home)
+=======
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
     5)TestFramework\WEB-INF:
         a)web.xml:
             a-1) pointe sur FrontServlet
@@ -44,9 +59,12 @@ Comprehension du fichier:
     6)TestFramework\WEB-INF\lib:
         a)framework.jar:
             a-1) framework.jar: fichier jar(contenant les classes dans  le dossier etu1970)
+<<<<<<< HEAD
     7)TestFramework\pages:
         a)welcome.jsp: 
             a-1) affichage pour test de l'url "home" - test de redirection dans une vue
+=======
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
     a) build.bat:
         a-1):commande pour: _creation du fichier jar et sa copie dans lib
                             _compilation du fichier test(Emp)
@@ -56,4 +74,7 @@ Comprehension du fichier:
     b)TestFramework.war:
         a-1):fichier war du dossier de test
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838

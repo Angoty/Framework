@@ -10,7 +10,11 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontServlet</servlet-name>
+<<<<<<< HEAD
         <url-pattern>/</url-pattern>
+=======
+        <url-pattern>/*</url-pattern>
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
     </servlet-mapping>
     <session-config>
         <session-timeout>

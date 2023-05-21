@@ -16,5 +16,8 @@ public class Mapping{
     public void setmethod(String method){
         this.method=method;
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
 }

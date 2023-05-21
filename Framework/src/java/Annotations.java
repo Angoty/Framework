@@ -24,7 +24,11 @@ public class Annotations{
         return false;
     }
     
+<<<<<<< HEAD
     public static Vector<Class<?>> getInPackage(String packagePath,String name) throws Exception{
+=======
+    public static Vector<Class<?>> getFiles(String packagePath,String name) throws Exception{
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
        Vector<Class<?>> classes = new Vector<Class<?>>();
 
         File packageDir = new File(packagePath);   
@@ -35,7 +39,11 @@ public class Annotations{
                     String newPath="/"+file.getAbsolutePath();
                     newPath=newPath.replace("\\","/");
                     String nomPack=name+"."+file.getName();
+<<<<<<< HEAD
                     classes.addAll(getInPackage(newPath,nomPack));
+=======
+                    classes.addAll(getFiles(newPath,nomPack));
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
                 }
                 if (file.getName().endsWith(".class")) {
                     String className = name + "." + file.getName().substring(0, file.getName().length() - 6);
@@ -51,7 +59,11 @@ public class Annotations{
         System.out.println(directory);
         Vector<Class<?>> classes = new Vector<Class<?>>();
         try {
+<<<<<<< HEAD
             for (Class<?> cls : getInPackage(directory, nomPack)) {
+=======
+            for (Class<?> cls : getFiles(directory, nomPack)) {
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
                 if (takeAnnotation(cls,annotation)) {
                     classes.add(cls);
                 }
