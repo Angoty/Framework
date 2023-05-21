@@ -1,6 +1,13 @@
 package model.emp;
 
+<<<<<<< HEAD
 import etu1970.framework.ModelView;
+=======
+<<<<<<< HEAD
+import etu1970.framework.ModelView;
+=======
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
+>>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
 import etu1970.framework.annotations.AppRoute;
 import java.lang.reflect.Field;
 
@@ -64,4 +71,28 @@ public class Emp {
         }
         return modele;
     }
+<<<<<<< HEAD
+
+// redirect to an jsp file
+    @AppRoute(url="home")
+    public ModelView redirect(){
+        ModelView modele=new ModelView();
+        try{
+            modele=new ModelView("./pages/welcome.jsp");
+            System.out.println(modele.getView());
+        }
+        catch(Exception io){
+            io.printStackTrace();
+        }
+
+        return modele;
+    }
 }
+=======
+}
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
+>>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
