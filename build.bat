@@ -1,6 +1,6 @@
 
 @REM locations
-set initial="E:\L2\S4\Mr Naina\Update\Framework\sprint4"
+set initial="E:\L2\S4\Mr Naina\Update\Framework\sprint6"
 set framework=%initial%/Framework/src/java
 set testframework=%initial%/TestFramework
 set temp=%initial%/Temporary
@@ -27,11 +27,12 @@ copy framework.jar %lib_location%
 
 @REM  creation du repertoire temporaire et ses contenus
 cd %initial%
-md Temporary\WEB-INF\classes\model Temporary\WEB-INF\lib Temporary\src\model
+md Temporary\WEB-INF\classes\model Temporary\WEB-INF\lib Temporary\pages Temporary\src\model
 
 @REM compilation des fichiers de test et copie dans le repertoire temporaire
 cd %testframework%
 javac -cp WEB-INF/lib/framework.jar -d WEB-INF/classes src/model/emp/*.java
+cp -R pages/* %temp%/pages
 cp -R WEB-INF/* %temp%/WEB-INF 
 
 @REM creation du fichier war et deploiement sur tomcat
