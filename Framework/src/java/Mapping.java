@@ -19,5 +19,9 @@ public class Mapping{
 <<<<<<< HEAD
     
 =======
+<<<<<<< HEAD
+    
+=======
 >>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
+>>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
 }
