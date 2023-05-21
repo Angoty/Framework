@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>FrontServlet</servlet-name>
+        <servlet-class>etu1970.framework.servlet.FrontServlet</servlet-class>
+        <init-param>
+            <param-name>direction</param-name>
+            <param-value>model</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FrontServlet</servlet-name>
+<<<<<<< HEAD
+        <url-pattern>/</url-pattern>
+=======
+        <url-pattern>/*</url-pattern>
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
