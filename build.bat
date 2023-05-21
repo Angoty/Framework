@@ -1,6 +1,10 @@
 
 @REM locations
+<<<<<<< HEAD
+set initial="E:\L2\S4\Mr Naina\Update\Framework\sprint5"
+=======
 set initial="E:\L2\S4\Mr Naina\Update\Framework\sprint4"
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
 set framework=%initial%/Framework/src/java
 set testframework=%initial%/TestFramework
 set temp=%initial%/Temporary
@@ -19,7 +23,11 @@ javac -d . classeAnnoted/AppRoute.java
 javac -d . Annotations.java
 javac -d . Mapping.java
 javac -d . MappingUrls.java
+<<<<<<< HEAD
+javac -d . FrontServlet.java -Xlint
+=======
 javac -d . FrontServlet.java
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
 
 @REM creation du fichier jar et copie dans lib 
 jar cf framework.jar etu1970/*
@@ -27,11 +35,19 @@ copy framework.jar %lib_location%
 
 @REM  creation du repertoire temporaire et ses contenus
 cd %initial%
+<<<<<<< HEAD
+md Temporary\WEB-INF\classes\model Temporary\WEB-INF\lib Temporary\pages Temporary\src\model
+=======
 md Temporary\WEB-INF\classes\model Temporary\WEB-INF\lib Temporary\src\model
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
 
 @REM compilation des fichiers de test et copie dans le repertoire temporaire
 cd %testframework%
 javac -cp WEB-INF/lib/framework.jar -d WEB-INF/classes src/model/emp/*.java
+<<<<<<< HEAD
+cp -R pages/* %temp%/pages
+=======
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
 cp -R WEB-INF/* %temp%/WEB-INF 
 
 @REM creation du fichier war et deploiement sur tomcat

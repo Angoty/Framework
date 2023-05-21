@@ -9,7 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import etu1970.framework.Mapping;
 import java.util.HashMap;
 import etu1970.framework.MappingUrls;
+<<<<<<< HEAD
+import java.lang.reflect.Method;
+import etu1970.framework.ModelView;
+import javax.servlet.RequestDispatcher;
+=======
 
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
 
 public class FrontServlet extends HttpServlet{
     HashMap<String, Mapping> mappingUrls = new HashMap<String, Mapping>();
@@ -19,7 +25,11 @@ public class FrontServlet extends HttpServlet{
         String directory="WEB-INF/classes/"+path;
         String name=this.getServletContext().getRealPath(directory);
         name=name.replace("\\", "/");
+<<<<<<< HEAD
+        // System.out.println(directory+name);
+=======
         System.out.println(directory+name);
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
         mappingUrls=MappingUrls.getMethodsControllerURL(name, path);
     }
 
@@ -36,8 +46,36 @@ public class FrontServlet extends HttpServlet{
                 out.println("Url: "+k);
                 out.println("<br>");
             }
+<<<<<<< HEAD
+            String[] urls=lastURL.split("/");
+            if(urls.length>0){
+            int indice=urls.length-1;
+            String cle=urls[indice];
+            if(mappingUrls.containsKey(cle)){
+                try{
+                    Mapping mapping=mappingUrls.get(cle);
+                    String methode=mapping.getmethod();
+                    Class<?> cls=Class.forName(mapping.getclassName());
+                    Object obj = cls.getConstructor().newInstance();
+                    Object value = cls.getMethod(mapping.getmethod()).invoke(obj);
+                    System.out.println(obj);
+                    if(value instanceof ModelView){
+                        String jsp=((ModelView) value).getView();
+                        RequestDispatcher dispat = request.getRequestDispatcher(jsp);
+                        dispat.forward(request, response);
+                    }
+                }
+                catch(Exception io){
+                    System.out.println(io.getMessage());
+                }
+            }
+        }
+            
+        }catch(Exception e){
+=======
         }
         catch(Exception e){
+>>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
             System.out.println(e.getMessage());
         }
     }
