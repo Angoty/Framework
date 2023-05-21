@@ -6,21 +6,26 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-<<<<<<< HEAD
 import etu1970.framework.Mapping;
 import java.util.HashMap;
 import etu1970.framework.MappingUrls;
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 import etu1970.framework.Mapping;
 import java.util.HashMap;
 >>>>>>> 18444ef56fa98bd67651e3018809c59b6c009b44
+>>>>>>> 13d8f79efb724a4926807226fbd8c6b15de222e2
 
 
 public class FrontServlet extends HttpServlet{
     HashMap<String, Mapping> mappingUrls = new HashMap<String, Mapping>();
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 13d8f79efb724a4926807226fbd8c6b15de222e2
     public void init() throws ServletException{
         String path=this.getServletConfig().getInitParameter("direction");
         String directory="WEB-INF/classes/"+path;
@@ -29,6 +34,9 @@ public class FrontServlet extends HttpServlet{
         System.out.println(directory+name);
         mappingUrls=MappingUrls.getMethodsControllerURL(name, path);
     }
+<<<<<<< HEAD
+
+=======
 
 =======
 =======
@@ -36,6 +44,7 @@ public class FrontServlet extends HttpServlet{
 public class FrontServlet extends HttpServlet{
 >>>>>>> 28dbb64be4b477f95c048ad223fea53ae38bdca0
 >>>>>>> 18444ef56fa98bd67651e3018809c59b6c009b44
+>>>>>>> 13d8f79efb724a4926807226fbd8c6b15de222e2
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
