@@ -8,7 +8,33 @@ Comprehension du fichier:
     -a), b)...:fichier
     -a-1), a-2)...:explication
 
+<<<<<<< HEAD
 # # sprint3 <!-- Annotations et initiation à l'emploi du framework -->
+=======
+<<<<<<< HEAD
+# # sprint3 <!-- Annotations et initiation à l'emploi du framework -->
+=======
+<<<<<<< HEAD
+# # sprint2 <!-- But: Definition de la class Map qui prend le nom et la method de la classe concernée-->
+    1)src\java: 
+        a)FrontServlet.java:
+            a-1) processRequest+Quelques fonctions(prend les derniers urls)
+            a-2) doPost, doGet : appelle la fonction processRequest
+            a-3) HashMap de <String, Mapping>, instance hashmap qui a pour valeur Mapping et clé String(utile pour mapper les classes)
+        b) Mapping.java:
+            a-1) simple creation des attributs(className, Method)
+        b)exe.bat: 
+            a-1) commande pour compiler les classes et redirection dans le sprint3
+    2)web 2: 
+        a)web.xml: 
+            a-1) pointe sur FrontServlet
+
+
+
+=======
+# # sprint1 <!-- But: Creation d'un simple servlet et rediriger toutes les pages vers celui-ci -->
+>>>>>>> 18444ef56fa98bd67651e3018809c59b6c009b44
+>>>>>>> 13d8f79efb724a4926807226fbd8c6b15de222e2
     1)src\java:
         a)FrontServlet.java:
             a-1) processRequest+Quelques fonctions(prend les derniers urls)
