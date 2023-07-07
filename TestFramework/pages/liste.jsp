@@ -26,17 +26,10 @@
                     <td><%= cit.getAge() %></td>
                     <td><%= cit.getTaille() %></td>
                 </tr>
-<<<<<<< HEAD
                 <% } %>
                 <% } %>
                 <% for(Field field : fields) { %>
                     <th><%= field.getName()%></th>
-=======
-            <% } %>
-        <% } %>
-        <% for(Field field : fields) { %>
-            <th><%= field.getName()%></th>
->>>>>>> main
         <% } %>
         <% for (Emp emp : emps) { %>
             <tr>

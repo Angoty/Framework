@@ -45,7 +45,7 @@ public class Emp {
     }
 
 // redirect to an jsp file
-    @AppRoute(url="welcome")
+    @AppRoute(url="welcome.do")
     public ModelView redirect(){
         ModelView modele=new ModelView();
         try{
@@ -60,7 +60,7 @@ public class Emp {
     }
 
 // test a controller to a view
-    @AppRoute(url="emp-list")
+    @AppRoute(url="emp-list.do")
     public ModelView gotoView(){
         ModelView modele=new ModelView();
         try{
@@ -78,7 +78,6 @@ public class Emp {
         }
         return modele;
     }
-<<<<<<< HEAD
 
     @AppRoute(url="detail")
     public ModelView getDetails(){
@@ -95,6 +94,4 @@ public class Emp {
         }
         return modele;
     }
-=======
->>>>>>> main
 }

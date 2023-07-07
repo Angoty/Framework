@@ -6,11 +6,7 @@ Comprehension du fichier:
     -a), b)...:fichier
     -a-1), a-2)...:explication
 
-<<<<<<< HEAD
-# # sprint 8     <!-- But: invoquer une fonction avec parametre -->
-=======
-# # sprint 7     <!-- But: passage de donnees venant d'une vue vers un controller -->
->>>>>>> main
+# # sprint 9    <!-- But: File upload -->
     1)Framework\src\java:
         a)FrontServlet.java:
             a-1) processRequest:_Quelques fonctions(prend les derniers urls)
@@ -23,10 +19,8 @@ Comprehension du fichier:
             a-4) setData: fonction qui remplace la valeur du type venant de la classe(cast)
             a-5) getMethod
             a-6) chekField
-<<<<<<< HEAD
             a-7) nouveau parametres
-=======
->>>>>>> main
+            a-8) configureUpload : configuration du fichier upload
 
         b) Mapping.java:
             a-1) simple creation des attributs(className, Method) 
@@ -59,6 +53,7 @@ Comprehension du fichier:
         a)web.xml:
             a-1) pointe sur FrontServlet
             a-2) les urlpattern et initparam
+            .do(izay misy an'io dia hitany ny css)
     6)TestFramework\WEB-INF\lib:
         a)framework.jar:
             a-1) framework.jar: fichier jar(contenant les classes dans  le dossier etu1970)
@@ -69,12 +64,11 @@ Comprehension du fichier:
             a-2) affichage pour test de l'url "emp-list" - test de recuperation de donnee venant d'un controlleur
         c)formulaire.jsp:
             a-1) affichage pour test de l'url "form" - test d'envoie de donnee venant d'une vue vers un controlleur
-<<<<<<< HEAD
             a-2) lien qui va vers le detail
         d)details.jsp:
            a-1) affichage pour le test de detail
-=======
->>>>>>> main
+        e)infomations.jsp:
+           a-1) affichage pour le test de file_upload
     a) build.bat:
         a-1):commande pour: _creation du fichier jar et sa copie dans lib
                             _compilation du fichier test(Emp)

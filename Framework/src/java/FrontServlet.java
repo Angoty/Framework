@@ -16,12 +16,9 @@ import java.util.Map;
 import java.lang.reflect.Field;
 import java.util.Enumeration;
 import java.sql.Date;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.lang.reflect.Parameter;
 
-=======
->>>>>>> main
 
 
 
@@ -63,10 +60,7 @@ public class FrontServlet extends HttpServlet{
                     Object obj = cls.getConstructor().newInstance();
                     Enumeration<String> formParams = request.getParameterNames();
                     System.out.println(formParams);
-<<<<<<< HEAD
                     ArrayList<String> paramsValues = new ArrayList<String>();
-=======
->>>>>>> main
                     if(formParams!=null){
                         while(formParams.hasMoreElements()){
                             String param = formParams.nextElement();
@@ -76,8 +70,13 @@ public class FrontServlet extends HttpServlet{
                             }
                         }
                     }
+                    if(hasFileUpload(classe)){
+                        System.out.println("has fileUpload");
+                        InputStream in2 = getServletContext().getResourceAsStream("/WEB-INF/web.xml");
+                        String folderPath = staxParser.getFileFolder(in2);
+                        configureUpload(request,classe, obj, folderPath);
+                    }
                     if(type.equals(ModelView.class)){
-<<<<<<< HEAD
                         ModelView modelView = new ModelView();
                         Parameter[] methodParams = m.getParameters();
                         Class[] types = m.getParameterTypes();
@@ -116,19 +115,6 @@ public class FrontServlet extends HttpServlet{
                         request.getRequestDispatcher(view).forward(request,response);
                     }else {
                         throw new Exception("Not instance of ModelView");
-=======
-                            ModelView model= (ModelView) m.invoke(obj);
-                            String jsp=model.getView();
-                            HashMap<String,Object> model_view = model.getData();
-                            if(model_view.size()>0){
-                                for(String k: model_view.keySet()){
-                                    request.setAttribute(k,model_view.get(k));
-                                }
-                            }
-                            request.getRequestDispatcher(jsp).forward(request,response);
-                    }else {
-                        response.getWriter().write(obj.toString());
->>>>>>> main
                     }
                 }
                 catch(Exception io){
@@ -142,6 +128,37 @@ public class FrontServlet extends HttpServlet{
         }
     }
 
+    public void configureUpload(HttpServletRequest request, Class classe, Object obj, String folderPath) throws Exception{
+        String contentType = request.getContentType();
+        if (contentType != null && contentType.startsWith("multipart/form-data")) {
+            System.out.println("multipart/form-data");
+            // String folderPath = getFileFolder();
+            for (Part filePart : request.getParts()) {
+            System.out.println("multipart/form-data boucle");
+                System.out.println(filePart.getName()+" "+filePart.getSubmittedFileName());
+                // raha mitovy @ ao am field
+                if(checkField(filePart.getName(),classe)==true && classe.getDeclaredField(filePart.getName()).getType().equals(FileUpload.class)){
+                    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+                    String filePath = folderPath+fileName;
+                    InputStream fileContent = filePart.getInputStream();
+
+                    // put into bytes
+                    byte[] array = fileContent.readAllBytes();
+                    if(!fileName.isEmpty()){
+                        OutputStream os = (OutputStream) new FileOutputStream(filePath);
+                        os.write(array);
+                    }
+                    FileUpload fileUpload = new FileUpload(fileName, filePath, array);
+
+                    // set it
+                    Field f = classe.getDeclaredField(filePart.getName());
+                    Method setMethod = getMethod("set",f,classe);
+
+                    setMethod.invoke(obj,fileUpload);
+                }
+            }
+        }
+    }
     public Method getMethod(String prefix, Field f, Class classe) throws NoSuchMethodException {
         String field = f.getName();
         String name = prefix+field;
