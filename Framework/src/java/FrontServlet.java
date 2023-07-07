@@ -9,20 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import etu1970.framework.Mapping;
 import java.util.HashMap;
 import etu1970.framework.MappingUrls;
-<<<<<<< HEAD
 import java.lang.reflect.Method;
 import etu1970.framework.ModelView;
 import javax.servlet.RequestDispatcher;
 import java.util.Map;
-=======
-<<<<<<< HEAD
-import java.lang.reflect.Method;
-import etu1970.framework.ModelView;
-import javax.servlet.RequestDispatcher;
-=======
->>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
+import java.lang.reflect.Field;
+import java.util.Enumeration;
+import java.sql.Date;
 
->>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
+
 
 public class FrontServlet extends HttpServlet{
     HashMap<String, Mapping> mappingUrls = new HashMap<String, Mapping>();
@@ -32,15 +27,7 @@ public class FrontServlet extends HttpServlet{
         String directory="WEB-INF/classes/"+path;
         String name=this.getServletContext().getRealPath(directory);
         name=name.replace("\\", "/");
-<<<<<<< HEAD
         // System.out.println(directory+name);
-=======
-<<<<<<< HEAD
-        // System.out.println(directory+name);
-=======
-        System.out.println(directory+name);
->>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
->>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
         mappingUrls=MappingUrls.getMethodsControllerURL(name, path);
     }
 
@@ -57,10 +44,6 @@ public class FrontServlet extends HttpServlet{
                 out.println("Url: "+k);
                 out.println("<br>");
             }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
             String[] urls=lastURL.split("/");
             if(urls.length>0){
             int indice=urls.length-1;
@@ -68,49 +51,84 @@ public class FrontServlet extends HttpServlet{
             if(mappingUrls.containsKey(cle)){
                 try{
                     Mapping mapping=mappingUrls.get(cle);
-                    String methode=mapping.getmethod();
                     Class<?> cls=Class.forName(mapping.getclassName());
+                    Method m=cls.getDeclaredMethod(mapping.getmethod());
+                    Class type=m.getReturnType();
                     Object obj = cls.getConstructor().newInstance();
-                    Object value = cls.getMethod(mapping.getmethod()).invoke(obj);
-                    System.out.println(obj);
-                    if(value instanceof ModelView){
-<<<<<<< HEAD
-                            ModelView model= (ModelView) value;
-                            String jsp=model.getView();
-                            for(Map.Entry<String, Object> entry : model.getData().entrySet()) {
-                                String key = String.valueOf(entry.getKey());
-                                Object val = entry.getValue();
-                                request.setAttribute(key, val);
+                    Enumeration<String> formParams = request.getParameterNames();
+                    System.out.println(formParams);
+                    if(formParams!=null){
+                        while(formParams.hasMoreElements()){
+                            String param = formParams.nextElement();
+                            if(checkField(param, cls)==true){
+                                String attr = request.getParameter(param);
+                                setData(cls, obj, param,attr);
                             }
-                            RequestDispatcher dispat = request.getRequestDispatcher(jsp);
-                            dispat.forward(request, response);
+                        }
+                    }
+                    if(type.equals(ModelView.class)){
+                            ModelView model= (ModelView) m.invoke(obj);
+                            String jsp=model.getView();
+                            HashMap<String,Object> model_view = model.getData();
+                            if(model_view.size()>0){
+                                for(String k: model_view.keySet()){
+                                    request.setAttribute(k,model_view.get(k));
+                                }
+                            }
+                            request.getRequestDispatcher(jsp).forward(request,response);
                     }else {
-                        response.getWriter().write(value.toString());
-=======
-                        String jsp=((ModelView) value).getView();
-                        RequestDispatcher dispat = request.getRequestDispatcher(jsp);
-                        dispat.forward(request, response);
->>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
+                        response.getWriter().write(obj.toString());
                     }
                 }
                 catch(Exception io){
                     System.out.println(io.getMessage());
                 }
             }
-<<<<<<< HEAD
         }
             
         }catch(Exception e){
-=======
-        }
-            
-        }catch(Exception e){
-=======
-        }
-        catch(Exception e){
->>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
->>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
             System.out.println(e.getMessage());
+        }
+    }
+
+    public Method getMethod(String prefix, Field f, Class classe) throws NoSuchMethodException {
+        String field = f.getName();
+        String name = prefix+field;
+        Method[] list = classe.getDeclaredMethods();
+        for(Method m: list){
+            if(m.getName().equalsIgnoreCase(name)){
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public boolean checkField(String fieldName, Class classe){
+        Field[] fields = classe.getDeclaredFields();
+        for(Field f: fields){
+            if(fieldName.equals(f.getName())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void setData(Class classe, Object obj, String parametre, String attr)throws Exception{
+        Field f = classe.getDeclaredField(parametre);
+        Class type = getMethod("get", f,classe).getReturnType();
+        Method setMethod = getMethod("set",f,classe);
+        if (type==int.class){
+            setMethod.invoke(obj,Integer.parseInt(attr));
+        }else if ( type==double.class) {
+            setMethod.invoke(obj,Double.parseDouble(attr));
+        }else if ( type==float.class) {
+            setMethod.invoke(obj,Float.parseFloat(attr));
+        }else if(type == Date.class){
+            setMethod.invoke(obj,Date.valueOf(attr));
+        }
+        else{
+            Object value = attr;
+            setMethod.invoke(obj,type.cast(parametre));
         }
     }
 
