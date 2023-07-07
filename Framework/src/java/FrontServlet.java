@@ -16,6 +16,9 @@ import java.util.Map;
 import java.lang.reflect.Field;
 import java.util.Enumeration;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.lang.reflect.Parameter;
+
 
 
 
@@ -57,6 +60,7 @@ public class FrontServlet extends HttpServlet{
                     Object obj = cls.getConstructor().newInstance();
                     Enumeration<String> formParams = request.getParameterNames();
                     System.out.println(formParams);
+                    ArrayList<String> paramsValues = new ArrayList<String>();
                     if(formParams!=null){
                         while(formParams.hasMoreElements()){
                             String param = formParams.nextElement();
@@ -67,17 +71,44 @@ public class FrontServlet extends HttpServlet{
                         }
                     }
                     if(type.equals(ModelView.class)){
-                            ModelView model= (ModelView) m.invoke(obj);
-                            String jsp=model.getView();
-                            HashMap<String,Object> model_view = model.getData();
-                            if(model_view.size()>0){
-                                for(String k: model_view.keySet()){
-                                    request.setAttribute(k,model_view.get(k));
+                        ModelView modelView = new ModelView();
+                        Parameter[] methodParams = m.getParameters();
+                        Class[] types = m.getParameterTypes();
+                        if(methodParams!=null){
+                            ArrayList<Object> listArgs = new ArrayList<Object>();
+                            for(int i=0;i<methodParams.length;i++){
+                                for(String p: paramsValues){
+                                    if(methodParams[i].getName().equals(p)){
+                                        if (types[i]==Integer.class){
+                                            listArgs.add(Integer.valueOf(request.getParameter(p)));
+                                        }else if ( types[i]==Double.class) {
+                                            listArgs.add(Double.valueOf(request.getParameter(p)));
+                                        }else if ( types[i]==Float.class) {
+                                            listArgs.add(Float.valueOf(request.getParameter(p)));
+                                        }else if(types[i] == Date.class){
+                                            listArgs.add(Date.valueOf(request.getParameter(p)));
+                                        }else{
+                                            listArgs.add(types[i].cast(request.getParameter(p)));
+                                        }
+                                    }
                                 }
                             }
-                            request.getRequestDispatcher(jsp).forward(request,response);
+                            Object[] args = new Object[listArgs.size()];
+                            args = listArgs.toArray(args);
+                            modelView = (ModelView) m.invoke(obj,args);
+                        }else{
+                            modelView = (ModelView) m.invoke(obj);
+                        }
+                        String view = modelView.getView();
+                        HashMap<String,Object> modelViewData = modelView.getData();
+                        if(modelViewData.size()>0){
+                            for(String k: modelViewData.keySet()){
+                                request.setAttribute(k,modelViewData.get(k));
+                            }
+                        }
+                        request.getRequestDispatcher(view).forward(request,response);
                     }else {
-                        response.getWriter().write(obj.toString());
+                        throw new Exception("Not instance of ModelView");
                     }
                 }
                 catch(Exception io){

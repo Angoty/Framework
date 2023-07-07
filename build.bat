@@ -1,9 +1,9 @@
 
 @REM locations
-set initial="E:\ITUniversity\L2\S4\Mr Naina\Update\Framework\sprint7"
+set initial="E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8"
 set framework=%initial%\Framework\src\java
 set framework=%framework%"
-set testframework=%initial%/TestFramework
+set testframework=%initial%\TestFramework
 set temp=%initial%\Temporary
 set lib_location=%testframework%\WEB-INF\lib
 set war_dev=%initial%\Temporary.war
@@ -25,6 +25,7 @@ javac -d . FrontServlet.java
 
 @REM creation du fichier jar et copie dans lib 
 jar cf framework.jar etu1970/*
+set initial=%initial:~0,-1%
 copy framework.jar %lib_location%
 
 @REM  creation du repertoire temporaire et ses contenus
@@ -34,8 +35,8 @@ md Temporary\WEB-INF\classes\model Temporary\WEB-INF\lib Temporary\pages Tempora
 @REM compilation des fichiers de test et copie dans le repertoire temporaire
 cd %testframework%
 javac -cp WEB-INF/lib/framework.jar -d WEB-INF/classes src/model/emp/*.java
-xcopy pages\* %temp%\pages" /E
-xcopy WEB-INF\* %temp%\WEB-INF" /E
+xcopy pages\* "E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8\Temporary\pages" /E
+xcopy WEB-INF\* "E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8\Temporary\WEB-INF" /E
 
 
 @REM creation du fichier war et deploiement sur tomcat
