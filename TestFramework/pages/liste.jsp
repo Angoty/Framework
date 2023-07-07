@@ -26,17 +26,26 @@
                     <td><%= cit.getAge() %></td>
                     <td><%= cit.getTaille() %></td>
                 </tr>
+<<<<<<< HEAD
+                <% } %>
+                <% } %>
+                <% for(Field field : fields) { %>
+                    <th><%= field.getName()%></th>
+=======
             <% } %>
         <% } %>
         <% for(Field field : fields) { %>
             <th><%= field.getName()%></th>
+>>>>>>> main
         <% } %>
         <% for (Emp emp : emps) { %>
             <tr>
                 <td><%= emp.getnom() %></td>
                 <td><%= emp.getgrade() %></td>
+                <td><a href="detail/?id=0">Voir detail</a></td>
             </tr>
         <% } %>
     </table>
+    <table border="1">
 </body>
 </html>
