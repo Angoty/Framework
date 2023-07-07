@@ -65,7 +65,7 @@ public class Citoyen{
     }
 
 // test a view to controller
-    @AppRoute(url="form")
+    @AppRoute(url="form.do")
     public ModelView gotoController(){
         ModelView modele=new ModelView();
         try{
@@ -81,5 +81,9 @@ public class Citoyen{
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
 >>>>>>> main
 }

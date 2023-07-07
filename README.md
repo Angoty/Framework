@@ -7,9 +7,13 @@ Comprehension du fichier:
     -a-1), a-2)...:explication
 
 <<<<<<< HEAD
+# # sprint 8-bis     <!-- But: css -->
+=======
+<<<<<<< HEAD
 # # sprint 8     <!-- But: invoquer une fonction avec parametre -->
 =======
 # # sprint 7     <!-- But: passage de donnees venant d'une vue vers un controller -->
+>>>>>>> main
 >>>>>>> main
     1)Framework\src\java:
         a)FrontServlet.java:
@@ -26,6 +30,10 @@ Comprehension du fichier:
 <<<<<<< HEAD
             a-7) nouveau parametres
 =======
+<<<<<<< HEAD
+            a-7) nouveau parametres
+=======
+>>>>>>> main
 >>>>>>> main
 
         b) Mapping.java:
@@ -59,6 +67,7 @@ Comprehension du fichier:
         a)web.xml:
             a-1) pointe sur FrontServlet
             a-2) les urlpattern et initparam
+            .do(izay misy an'io dia hitany ny css)
     6)TestFramework\WEB-INF\lib:
         a)framework.jar:
             a-1) framework.jar: fichier jar(contenant les classes dans  le dossier etu1970)
@@ -74,6 +83,12 @@ Comprehension du fichier:
         d)details.jsp:
            a-1) affichage pour le test de detail
 =======
+<<<<<<< HEAD
+            a-2) lien qui va vers le detail
+        d)details.jsp:
+           a-1) affichage pour le test de detail
+=======
+>>>>>>> main
 >>>>>>> main
     a) build.bat:
         a-1):commande pour: _creation du fichier jar et sa copie dans lib

@@ -21,6 +21,12 @@ import java.util.ArrayList;
 import java.lang.reflect.Parameter;
 
 =======
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.lang.reflect.Parameter;
+
+=======
+>>>>>>> main
 >>>>>>> main
 
 
@@ -66,6 +72,10 @@ public class FrontServlet extends HttpServlet{
 <<<<<<< HEAD
                     ArrayList<String> paramsValues = new ArrayList<String>();
 =======
+<<<<<<< HEAD
+                    ArrayList<String> paramsValues = new ArrayList<String>();
+=======
+>>>>>>> main
 >>>>>>> main
                     if(formParams!=null){
                         while(formParams.hasMoreElements()){
@@ -78,6 +88,9 @@ public class FrontServlet extends HttpServlet{
                     }
                     if(type.equals(ModelView.class)){
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> main
                         ModelView modelView = new ModelView();
                         Parameter[] methodParams = m.getParameters();
                         Class[] types = m.getParameterTypes();
@@ -98,6 +111,8 @@ public class FrontServlet extends HttpServlet{
                                             listArgs.add(types[i].cast(request.getParameter(p)));
                                         }
                                     }
+<<<<<<< HEAD
+=======
                                 }
                             }
                             Object[] args = new Object[listArgs.size()];
@@ -123,11 +138,29 @@ public class FrontServlet extends HttpServlet{
                             if(model_view.size()>0){
                                 for(String k: model_view.keySet()){
                                     request.setAttribute(k,model_view.get(k));
+>>>>>>> main
                                 }
                             }
-                            request.getRequestDispatcher(jsp).forward(request,response);
+                            Object[] args = new Object[listArgs.size()];
+                            args = listArgs.toArray(args);
+                            modelView = (ModelView) m.invoke(obj,args);
+                        }else{
+                            modelView = (ModelView) m.invoke(obj);
+                        }
+                        String view = modelView.getView();
+                        HashMap<String,Object> modelViewData = modelView.getData();
+                        if(modelViewData.size()>0){
+                            for(String k: modelViewData.keySet()){
+                                request.setAttribute(k,modelViewData.get(k));
+                            }
+                        }
+                        request.getRequestDispatcher(view).forward(request,response);
                     }else {
+<<<<<<< HEAD
+                        throw new Exception("Not instance of ModelView");
+=======
                         response.getWriter().write(obj.toString());
+>>>>>>> main
 >>>>>>> main
                     }
                 }
