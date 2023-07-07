@@ -1,17 +1,10 @@
 
 @REM locations
-<<<<<<< HEAD
-set initial="E:\L2\S4\Mr Naina\Update\Framework\sprint6"
-=======
-<<<<<<< HEAD
-set initial="E:\L2\S4\Mr Naina\Update\Framework\sprint5"
-=======
-set initial="E:\L2\S4\Mr Naina\Update\Framework\sprint4"
->>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
->>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
-set framework=%initial%/Framework/src/java
-set testframework=%initial%/TestFramework
-set temp=%initial%/Temporary
+set initial="E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8"
+set framework=%initial%\Framework\src\java
+set framework=%framework%"
+set testframework=%initial%\TestFramework
+set temp=%initial%\Temporary
 set lib_location=%testframework%\WEB-INF\lib
 set war_dev=%initial%\Temporary.war
 set programms="C:\Program Files"
@@ -23,44 +16,28 @@ set tomcat_exe=%tomcat_location%/bin
 
 @REM Compilation Framework
 cd %framework%
+set initial=%initial:~0,-1%
 javac -d . classeAnnoted/AppRoute.java
 javac -d . Annotations.java
 javac -d . Mapping.java
 javac -d . MappingUrls.java
-<<<<<<< HEAD
-javac -d . FrontServlet.java -Xlint
-=======
 javac -d . FrontServlet.java
->>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
 
 @REM creation du fichier jar et copie dans lib 
 jar cf framework.jar etu1970/*
+set initial=%initial:~0,-1%
 copy framework.jar %lib_location%
 
 @REM  creation du repertoire temporaire et ses contenus
 cd %initial%
-<<<<<<< HEAD
 md Temporary\WEB-INF\classes\model Temporary\WEB-INF\lib Temporary\pages Temporary\src\model
-=======
-<<<<<<< HEAD
-md Temporary\WEB-INF\classes\model Temporary\WEB-INF\lib Temporary\pages Temporary\src\model
-=======
-md Temporary\WEB-INF\classes\model Temporary\WEB-INF\lib Temporary\src\model
->>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
->>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
 
 @REM compilation des fichiers de test et copie dans le repertoire temporaire
 cd %testframework%
 javac -cp WEB-INF/lib/framework.jar -d WEB-INF/classes src/model/emp/*.java
-<<<<<<< HEAD
-cp -R pages/* %temp%/pages
-=======
-<<<<<<< HEAD
-cp -R pages/* %temp%/pages
-=======
->>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
->>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
-cp -R WEB-INF/* %temp%/WEB-INF 
+xcopy pages\* "E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8\Temporary\pages" /E
+xcopy WEB-INF\* "E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8\Temporary\WEB-INF" /E
+
 
 @REM creation du fichier war et deploiement sur tomcat
 cd %initial%
@@ -77,8 +54,8 @@ if exist %war_tomcat% (
 )
 copy %war_dev%
 
-cd %navigateur%
-firefox.exe "http://localhost:8181/"
+@REM @REM cd %navigateur%
+@REM @REM firefox.exe "http://localhost:8181/"
 
-cd %tomcat_exe%
-Tomcat9.exe 
+@REM @REM cd %tomcat_exe%
+@REM @REM Tomcat9.exe 

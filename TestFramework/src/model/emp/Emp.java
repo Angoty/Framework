@@ -1,20 +1,16 @@
 package model.emp;
 
-<<<<<<< HEAD
 import etu1970.framework.ModelView;
-=======
-<<<<<<< HEAD
-import etu1970.framework.ModelView;
-=======
->>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
->>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
 import etu1970.framework.annotations.AppRoute;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+
 
 
 public class Emp {
     String nom;
     String grade;
+    int id;
     
     @AppRoute(url="get")
     public String getnom(){
@@ -23,7 +19,9 @@ public class Emp {
     public String getgrade(){
         return this.grade;
     }
-
+    public int getid(){
+        return this.id;
+    }
     public void setnom(String n){
         this.nom=n;
     }
@@ -31,7 +29,16 @@ public class Emp {
         this.grade=g;
     }
 
+    public void setid(int i){
+        this.id=i;
+    }
+
     public Emp(){}
+    public Emp(String n, String g, int id){
+        this.setnom(n);
+        this.setgrade(g);
+        this.setid(id);
+    }
     public Emp(String n, String g){
         this.setnom(n);
         this.setgrade(g);
@@ -71,28 +78,20 @@ public class Emp {
         }
         return modele;
     }
-<<<<<<< HEAD
 
-// redirect to an jsp file
-    @AppRoute(url="home")
-    public ModelView redirect(){
-        ModelView modele=new ModelView();
+    @AppRoute(url="detail")
+    public ModelView getDetails(){
+        ModelView modele = new ModelView();
         try{
-            modele=new ModelView("./pages/welcome.jsp");
-            System.out.println(modele.getView());
-        }
-        catch(Exception io){
+            ArrayList<Emp> liste = new ArrayList<Emp>();
+            liste.add(new Emp("Miller","analyst",32));
+            liste.add(new Emp("Jones","manager",24));
+            liste.add(new Emp("Allen","trainee",28));
+            modele=new ModelView("./pages/details.jsp");
+            modele.addItem("details",liste.get(id));
+        }catch(Exception io){
             io.printStackTrace();
         }
-
         return modele;
     }
 }
-=======
-}
-<<<<<<< HEAD
-=======
-
-
->>>>>>> ad7aa51bdede769cf1223aaec95723225d976838
->>>>>>> a2dc8d65d3744f3222fd8f6eff2d52f1fe5866bc
