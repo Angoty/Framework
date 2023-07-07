@@ -16,9 +16,12 @@ import java.util.Map;
 import java.lang.reflect.Field;
 import java.util.Enumeration;
 import java.sql.Date;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.lang.reflect.Parameter;
 
+=======
+>>>>>>> main
 
 
 
@@ -60,7 +63,10 @@ public class FrontServlet extends HttpServlet{
                     Object obj = cls.getConstructor().newInstance();
                     Enumeration<String> formParams = request.getParameterNames();
                     System.out.println(formParams);
+<<<<<<< HEAD
                     ArrayList<String> paramsValues = new ArrayList<String>();
+=======
+>>>>>>> main
                     if(formParams!=null){
                         while(formParams.hasMoreElements()){
                             String param = formParams.nextElement();
@@ -71,6 +77,7 @@ public class FrontServlet extends HttpServlet{
                         }
                     }
                     if(type.equals(ModelView.class)){
+<<<<<<< HEAD
                         ModelView modelView = new ModelView();
                         Parameter[] methodParams = m.getParameters();
                         Class[] types = m.getParameterTypes();
@@ -109,6 +116,19 @@ public class FrontServlet extends HttpServlet{
                         request.getRequestDispatcher(view).forward(request,response);
                     }else {
                         throw new Exception("Not instance of ModelView");
+=======
+                            ModelView model= (ModelView) m.invoke(obj);
+                            String jsp=model.getView();
+                            HashMap<String,Object> model_view = model.getData();
+                            if(model_view.size()>0){
+                                for(String k: model_view.keySet()){
+                                    request.setAttribute(k,model_view.get(k));
+                                }
+                            }
+                            request.getRequestDispatcher(jsp).forward(request,response);
+                    }else {
+                        response.getWriter().write(obj.toString());
+>>>>>>> main
                     }
                 }
                 catch(Exception io){

@@ -78,6 +78,7 @@ public class Emp {
         }
         return modele;
     }
+<<<<<<< HEAD
 
     @AppRoute(url="detail")
     public ModelView getDetails(){
@@ -94,4 +95,6 @@ public class Emp {
         }
         return modele;
     }
+=======
+>>>>>>> main
 }

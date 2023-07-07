@@ -78,5 +78,8 @@ public class Citoyen{
 
         return modele;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 }
