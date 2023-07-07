@@ -16,9 +16,18 @@ import java.util.Map;
 import java.lang.reflect.Field;
 import java.util.Enumeration;
 import java.sql.Date;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.lang.reflect.Parameter;
 
+=======
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.lang.reflect.Parameter;
+
+=======
+>>>>>>> main
+>>>>>>> main
 
 
 
@@ -60,7 +69,14 @@ public class FrontServlet extends HttpServlet{
                     Object obj = cls.getConstructor().newInstance();
                     Enumeration<String> formParams = request.getParameterNames();
                     System.out.println(formParams);
+<<<<<<< HEAD
                     ArrayList<String> paramsValues = new ArrayList<String>();
+=======
+<<<<<<< HEAD
+                    ArrayList<String> paramsValues = new ArrayList<String>();
+=======
+>>>>>>> main
+>>>>>>> main
                     if(formParams!=null){
                         while(formParams.hasMoreElements()){
                             String param = formParams.nextElement();
@@ -71,6 +87,10 @@ public class FrontServlet extends HttpServlet{
                         }
                     }
                     if(type.equals(ModelView.class)){
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> main
                         ModelView modelView = new ModelView();
                         Parameter[] methodParams = m.getParameters();
                         Class[] types = m.getParameterTypes();
@@ -91,6 +111,8 @@ public class FrontServlet extends HttpServlet{
                                             listArgs.add(types[i].cast(request.getParameter(p)));
                                         }
                                     }
+<<<<<<< HEAD
+=======
                                 }
                             }
                             Object[] args = new Object[listArgs.size()];
@@ -109,6 +131,37 @@ public class FrontServlet extends HttpServlet{
                         request.getRequestDispatcher(view).forward(request,response);
                     }else {
                         throw new Exception("Not instance of ModelView");
+=======
+                            ModelView model= (ModelView) m.invoke(obj);
+                            String jsp=model.getView();
+                            HashMap<String,Object> model_view = model.getData();
+                            if(model_view.size()>0){
+                                for(String k: model_view.keySet()){
+                                    request.setAttribute(k,model_view.get(k));
+>>>>>>> main
+                                }
+                            }
+                            Object[] args = new Object[listArgs.size()];
+                            args = listArgs.toArray(args);
+                            modelView = (ModelView) m.invoke(obj,args);
+                        }else{
+                            modelView = (ModelView) m.invoke(obj);
+                        }
+                        String view = modelView.getView();
+                        HashMap<String,Object> modelViewData = modelView.getData();
+                        if(modelViewData.size()>0){
+                            for(String k: modelViewData.keySet()){
+                                request.setAttribute(k,modelViewData.get(k));
+                            }
+                        }
+                        request.getRequestDispatcher(view).forward(request,response);
+                    }else {
+<<<<<<< HEAD
+                        throw new Exception("Not instance of ModelView");
+=======
+                        response.getWriter().write(obj.toString());
+>>>>>>> main
+>>>>>>> main
                     }
                 }
                 catch(Exception io){

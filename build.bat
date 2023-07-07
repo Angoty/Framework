@@ -1,9 +1,23 @@
 
 @REM locations
+<<<<<<< HEAD
 set initial="E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8"
 set framework=%initial%\Framework\src\java
 set framework=%framework%"
 set testframework=%initial%\TestFramework
+=======
+<<<<<<< HEAD
+set initial="E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8"
+set framework=%initial%\Framework\src\java
+set framework=%framework%"
+set testframework=%initial%\TestFramework
+=======
+set initial="E:\ITUniversity\L2\S4\Mr Naina\Update\Framework\sprint7"
+set framework=%initial%\Framework\src\java
+set framework=%framework%"
+set testframework=%initial%/TestFramework
+>>>>>>> main
+>>>>>>> main
 set temp=%initial%\Temporary
 set lib_location=%testframework%\WEB-INF\lib
 set war_dev=%initial%\Temporary.war
@@ -35,8 +49,18 @@ md Temporary\WEB-INF\classes\model Temporary\WEB-INF\lib Temporary\pages Tempora
 @REM compilation des fichiers de test et copie dans le repertoire temporaire
 cd %testframework%
 javac -cp WEB-INF/lib/framework.jar -d WEB-INF/classes src/model/emp/*.java
+<<<<<<< HEAD
 xcopy pages\* "E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8\Temporary\pages" /E
 xcopy WEB-INF\* "E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8\Temporary\WEB-INF" /E
+=======
+<<<<<<< HEAD
+xcopy pages\* "E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8\Temporary\pages" /E
+xcopy WEB-INF\* "E:\ITUniversity\L2\S4\Mr Naina\New folder (2)\Framework\sprint8\Temporary\WEB-INF" /E
+=======
+xcopy pages\* %temp%\pages" /E
+xcopy WEB-INF\* %temp%\WEB-INF" /E
+>>>>>>> main
+>>>>>>> main
 
 
 @REM creation du fichier war et deploiement sur tomcat
